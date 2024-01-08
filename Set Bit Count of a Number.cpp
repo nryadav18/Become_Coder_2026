@@ -1,16 +1,24 @@
 #include<bits/stdc++.h>
 using namespace std;
-int main(){
-    //Set Bit Count of a number
-    int n;
-    cin>>n;
+//Set Bit Count of a Number...
+int set_bits(int n){
     int cnt = 0;
     while (n){
         if (n&1){
             cnt++;
         }
-        n = n>>1;
+        n>>=1;
     }
-    cout << cnt;
+    return cnt;
+}
+int main (){
+    //nry_code();
+    int t;
+    cin>>t;
+    while (t--){
+        int n;
+        cin>>n;
+        cout << set_bits(n) << endl;
+    }
     return 0;
 }
