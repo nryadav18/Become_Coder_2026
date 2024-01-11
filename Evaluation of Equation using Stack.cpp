@@ -1,8 +1,17 @@
 #include<bits/stdc++.h>
 using namespace std;
-// Evaluation of equation using Stack
+// Evaluation of equation using Stack without Braces
 /* The Operator Stack should be 
    Strictly Monotonially Increasing */
+/* Infix Expression */
+int priority(char ch){
+    if (ch == '+' or ch=='-'){
+        return 1;
+    }
+    else{
+        return 2;
+    }
+}
 int evaluate(int a,int b,char ch){
     if (ch=='+'){
         return a+b;
@@ -13,35 +22,49 @@ int evaluate(int a,int b,char ch){
     else if (ch=='*'){
         return a*b;
     }
-    else{
-        return 0;
+    else if (ch=='/'){
+        return int(a/b);
     }
 }
 int main (){
     string s;
     cin>>s;
+    int n = s.length();
     stack<char>math;
     stack<int>nums;
-    int val = 0;
-    for(auto i:s){
-        if (isdigit(i)){
-            nums.push(i-'0');
+    for(int i=0;i<n;i++){
+        if (s[i]==' '){
+            continue;
         }
-        else if (math.empty()){
-            math.push(i);
+        else if (s[i] >='0' and s[i] <='9'){
+            int val = 0;
+            while (s[i] >= '0' and s[i] <= '9'){
+                val = val * 10 + (s[i] - '0');
+                i++;
+            }
+            nums.push(val);
+            i--;
         }
         else{
-            while (!math.empty() and math.top()!='(' and (i=='*' or (i=='+' or i=='-') and (math.top()=='+' or math.top()=='-'))){
-                int v1 = nums.top();
-                nums.pop();
-                int v2 = nums.top();
-                nums.pop();
-                char v3 = math.top();
-                math.pop();
-                val = evaluate(v1,v2,v3);
-                nums.push(val);
+            if (math.empty()){
+                math.push(s[i]);
             }
-            math.push(i);
+            else{
+                while ((priority(s[i]) <= priority(math.top()))){
+                    int v1 = nums.top();
+                    nums.pop();
+                    int v2 = nums.top();
+                    nums.pop();
+                    char v3 = math.top();
+                    math.pop();
+                    int val = evaluate(v2,v1,v3);
+                    nums.push(val);
+                    if (math.empty()){
+                        break;
+                    }
+                }
+                math.push(s[i]);
+            }
         }
     }
     while (!math.empty()) {
