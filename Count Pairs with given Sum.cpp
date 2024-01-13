@@ -20,6 +20,7 @@ int count(int arr[],int n,int k){
             //cout << arr[i] << " " << diff << endl;
             cnt += (mp[arr[i]]*mp[diff]);
             mp[arr[i]] = 0;
+            mp[diff] = 0;
         }
     }
     return cnt;
