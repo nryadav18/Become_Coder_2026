@@ -2,17 +2,20 @@
 using namespace std;
 /* Counting Pairs with Given Sum */
 int count(int arr[],int n,int k){
+    unordered_map<int,int>mp;
+    for (int i = 0 ;i <n;i++){
+        mp[arr[i]]++;
+    }
     int cnt = 0;
-    int i = 0;
-    int j = n-1;
-    while (i<j){
-        int sum = arr[i]+arr[j];
-        if (sum==k) cnt++;
-        if (sum<=k){
-            i++;
+    for (int i = 0 ; i < n ; i++){
+        int diff = k - arr[i];
+        if (diff==arr[i]){
+            int t = mp[diff];
+            cnt += (t*(t-1))/2;
         }
-        else{
-            j--;
+        else if (mp[diff]>0){
+            cnt += (mp[arr[i]]*mp[diff]);
+            mp[arr[i]] = 0;
         }
     }
     return cnt;
@@ -31,9 +34,8 @@ int main (){
         cout << -1 << endl;
         return 0;
     }
-    sort(arr,arr+n);
     cout << count(arr,n,k);
     return 0;
-    //T.C = O(n*log(n))
-    //S.C = O(1)
+    //T.C = O(n)
+    //S.C = O(n)
 }
