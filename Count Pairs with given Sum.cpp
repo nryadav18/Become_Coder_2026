@@ -10,10 +10,14 @@ int count(int arr[],int n,int k){
     for (int i = 0 ; i < n ; i++){
         int diff = k - arr[i];
         if (diff==arr[i]){
+            //cout << arr[i] << " " << diff << endl;
             int t = mp[diff];
             cnt += (t*(t-1))/2;
+            mp[arr[i]] = 0;
+            
         }
         else if (mp[diff]>0){
+            //cout << arr[i] << " " << diff << endl;
             cnt += (mp[arr[i]]*mp[diff]);
             mp[arr[i]] = 0;
         }
