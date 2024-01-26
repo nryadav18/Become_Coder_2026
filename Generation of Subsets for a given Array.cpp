@@ -11,7 +11,7 @@ int main() {
 	    v.push_back(x);
 	}
 	int size = n;
-	int sq = 1<<n; // calculates the 2 power of n value
+	int sq = 1<<n; // calculates the value of n square
 	int ind , t;
 	vector<vector<int>>res;
 	for (int i = 0 ; i < sq ;i++){
