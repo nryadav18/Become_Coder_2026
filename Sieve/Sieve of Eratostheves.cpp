@@ -3,6 +3,7 @@ using namespace std;
 int main() {
     //Sieve of Eratostheves
     //T.C - O(n*log(log(n)))
+    //S.C - O(n)
 	int n;
 	cin>>n;
 	vector<bool>primeVector(n+1,true);
