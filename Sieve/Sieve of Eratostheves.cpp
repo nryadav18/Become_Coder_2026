@@ -2,7 +2,7 @@
 using namespace std;
 int main() {
     //Sieve of Eratostheves
-    //T.C - O(n*log(log(n))
+    //T.C - O(n*log(log(n)))
 	int n;
 	cin>>n;
 	vector<bool>primeVector(n+1,true);
