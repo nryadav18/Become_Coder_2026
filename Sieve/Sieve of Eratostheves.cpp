@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 int main() {
-    //Sieve of Erathosnes
+    //Sieve of Eratostheves
     //T.C - O(n*log(log(n))
 	int n;
 	cin>>n;
