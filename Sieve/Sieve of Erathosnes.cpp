@@ -8,7 +8,7 @@ int main() {
 	vector<bool>primeVector(n+1,true);
 	for (int i = 2 ; i <= sqrt(n) ; i++){
 	    if (primeVector[i]){
-	        for (int j = i*2 ; j <= n ; j = j+i){
+	        for (int j = i*i ; j <= n ; j = j+i){
 	            primeVector[j] = false;
 	        }
 	    }
